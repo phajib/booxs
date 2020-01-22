@@ -8,7 +8,15 @@ class Books {
 
     fetchAndLoadBooks() {
         this.adapter.getBooks().then(books => {
-            console.log(books)
+            books.forEach(book => this.books.push(book))
+        })
+        .then(() => {
+            this.render()
         })
     }
-}
+
+    render () {
+        const booksContainer = document.getElementById('books-container')
+        booksContainer.innerHTML = 'books load here'
+    }
+} 
