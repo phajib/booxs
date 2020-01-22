@@ -2,13 +2,19 @@ class Books {
     constructor() {
         this.books = []
         this.adapter = new BooksAdapter()
-        // this.bindEvenListeners()
+        this.initBindingsAndEvenListeners()
         this.fetchAndLoadBooks()
     }
 
+    initBindingsAndEvenListeners() {
+        this.booksContainer = document.getElementById('books-container')
+    }
+
     fetchAndLoadBooks() {
-        this.adapter.getBooks().then(books => {
-            books.forEach(book => this.books.push(book))
+        this.adapter.getBooks()
+        .then(books => {
+            books.forEach(book => this.books.push(new Book(book))) 
+            
         })
         .then(() => {
             this.render()
@@ -16,7 +22,6 @@ class Books {
     }
 
     render () {
-        const booksContainer = document.getElementById('books-container')
-        booksContainer.innerHTML = 'books load here'
+        this.booksContainer.innerHTML = this.books.map(book => book.renderLi()).join('')
     }
-} 
+}  
