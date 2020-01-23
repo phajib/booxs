@@ -8,6 +8,9 @@ class Books {
 
     initBindingsAndEvenListeners() {
         this.booksContainer = document.getElementById('books-container')
+        this.booksContainer.addEventListener('dblclick', function(){
+            console.log('double clicked')
+        })
     }
 
     fetchAndLoadBooks() {
