@@ -7,6 +7,6 @@ class Book {
     }
 
     renderLi() {
-        return `<li data-id=${this.id}>${this.title}</li>`
+        return `<li data-id=${this.id}>${this.author} - ${this.title}</li>`
     }
 }
