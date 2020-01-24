@@ -20,11 +20,11 @@ class Books {
             
         })
         .then(() => {
-            this.render()
+            this.renderBooks()
         })
     }
 
-    render () {
+    renderBooks () {
         this.booksContainer.innerHTML = this.books.map(book => book.renderLi()).join('')
     }
 }  
