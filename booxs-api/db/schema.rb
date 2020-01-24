@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2020_01_20_075615) do
     t.string "author"
     t.string "body_matter"
     t.string "subject"
+    t.string "image"
     t.integer "grade_level"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
