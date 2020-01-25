@@ -284,7 +284,7 @@ font-weight: 700;
 }
 
 /*--------------------
-4.3. portfolio
+4.3. Portfolio
 --------------------*/
 
 figure {
@@ -320,7 +320,7 @@ figcaption {
 }
 
 figure.effect-bubba {
-	background: white;
+	background: transparent;
 	margin-bottom: 1px;
 }
 
