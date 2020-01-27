@@ -13,8 +13,8 @@
 ActiveRecord::Schema.define(version: 2020_01_20_075615) do
 
   create_table "book_lists", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "book_id"
+    t.integer "userid"
+    t.integer "bookid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2020_01_20_075615) do
 
   create_table "users", force: :cascade do |t|
     t.string "email"
-    t.integer "book_list_id"
+    t.integer "book_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

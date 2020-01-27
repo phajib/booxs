@@ -1,6 +1,7 @@
 class BookSerializer
   include FastJsonapi::ObjectSerializer
-  has_many :users
-
-  attributes :id, :title, :author, :body_matter, :subject, :image, :grade_level
+  attributes :id, :title, :author, :body_matter, :subject, :image, :grade_level, :user_id
+  
+  belongs_to :user
 end
+
