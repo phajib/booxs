@@ -1,7 +1,8 @@
 class BookSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :id, :title, :author, :body_matter, :subject, :image, :grade_level, :user_id
-  
-  belongs_to :user
+  attributes :id, :title, :author, :description, :image, :user_id #, :book_list_id
+
+  # belongs_to :book_list
+  belongs_to :user #, through: :book_list
 end
 

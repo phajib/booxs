@@ -10,30 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_20_075615) do
-
-  create_table "book_lists", force: :cascade do |t|
-    t.integer "userid"
-    t.integer "bookid"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+ActiveRecord::Schema.define(version: 2020_01_20_075111) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "author"
-    t.string "body_matter"
-    t.string "subject"
+    t.string "description"
     t.string "image"
-    t.integer "grade_level"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "name"
     t.string "email"
-    t.integer "book_id"
+    t.string "password"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
