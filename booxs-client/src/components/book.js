@@ -4,14 +4,15 @@ class Book {
         this.title = bookJSON.title
         this.author = bookJSON.author
         this.image = bookJSON.image
-        this.body_matter = bookJSON.body_matter
+        this.description = bookJSON.description
+        this.user_id = bookJSON.user_id
     }
 
     renderLi() {
         return `<div class="col-md-6 col-0-gutter">
-                    <div class="ot-portfolio-item">
+                    <div class="ot-book-item">
                          <figure class="effect-bubba">
-                            <img src=${this.image} alt="${this.title}" class="img-responsive" />
+                            <img src=${this.image} alt="${this.title}" class="img-fluid" />
                             <figcaption>
                                 <h2>${this.title}</h2>
                                 <p>${this.author}</p>           
@@ -29,11 +30,8 @@ class Book {
                                 <h4>${this.author}</h4>
                             </div>
                             <div class="modal-body">
-                                <img src="${this.image}" alt="${this.title}" class="img-responsive" />
-                                <div class="modal-works">
-                                    <button type="button" class="btn btn-default">Add to Reading List</button>
-                                </div>
-                                <p>${this.body_matter}</p>
+                                <img src="${this.image}" alt="${this.title}" class="img-fluid" />
+                                <p>${this.description}</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
