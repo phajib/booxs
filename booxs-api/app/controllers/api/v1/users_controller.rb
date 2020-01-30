@@ -5,23 +5,23 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def new
-        @user = User.new
+        user = User.new
     end
 
     def create
-        user = User.create(user_params)
-        if user.valid?
+        user = User.new(user_params)
+        if user.save
             session[:current_user_id] = user.id
-            # render json: UserSerializer.new(user)
-            render json: user, status: 200
+            render json: UserSerializer.new(user), status: 200
+            # render json: user, status: 200
         else
             render :new
         end
     end
 
     def show
-        user = User.find_by(id: params[:id])
-        render json: UserSerializer.new(user)
+        @user = User.find_by(params[:id])
+        render json: UserSerializer.new(@user)
     end
 
     private 

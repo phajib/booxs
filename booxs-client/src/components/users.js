@@ -14,7 +14,6 @@ class Users {
 		this.adapter.getUsers()
 		.then(users => {
 			users["data"].forEach(user => this.users.push(user))
-			// users.forEach(user => this.users.push(user))
 		})
 		.then(() => {
 			this.renderUserBooxName()

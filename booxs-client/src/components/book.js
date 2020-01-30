@@ -17,7 +17,7 @@ class Book {
                                 <h2>${this.title}</h2>
                                 <p>${this.author}</p>           
                                 <a href="#" data-toggle="modal" data-target=#Modal-${this.id}>View more</a>
-                                </figcaption>
+                            </figcaption>
                         </figure>
                     </div>
                 </div>

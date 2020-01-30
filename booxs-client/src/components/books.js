@@ -1,7 +1,8 @@
 class Books {
     constructor(users) {
         this.users = users
-        this.BOOKS_URL = "http://localhost:3000/api/v1/books"
+		this.BOOKS_URL = "http://localhost:3000/api/v1/books"
+		this.USERS_URL = "http://localhost:3000/api/v1/users"
         this.books = []
         this.adapter = new BooksAdapter()
 		this.initBindingsAndEvenListeners()
@@ -22,7 +23,7 @@ class Books {
 		const newBookButton = document.createElement('button')
 		newBookButton.id = "new-question-button"
 		newBookButton.className = "btn btn-default"
-		newBookButton.innerText = "New Book"
+		newBookButton.innerText = "Enter New Book"
 		const linebreak = document.createElement('br')
 		newBookButton.appendChild(linebreak)
 		this.newBooxFormDiv.append(newBookButton)
@@ -33,6 +34,7 @@ class Books {
         this.adapter.getBooks()
 		.then(books => {
 			books["data"].forEach(book => this.books.push(new Book(book["attributes"])))
+			// books.forEach(book => this.books.push(new Book(book)))
 		})
 		.then(() => {
 			this.renderUserBooks()
@@ -42,38 +44,33 @@ class Books {
     renderUserBooks() {
 		this.newUserBooksContainer.innerHTML = ""
 		this.logoutButtonDiv.innerHTML = ""
-		this.newUserBooksContainer.innerHTML = this.books.map(book => book.renderLi()).join('')
-		// let bookCounter = 1
-		// this.books.forEach((book) => {
-		// 	const bookDiv = document.createElement('div') // Creates div for each Primary Comment
-		// 	bookDiv.className = "book-div"
-		// 	bookDiv.id = `book-div-${book.id}`
-		// 	bookDiv.setAttribute("data-id", book.id)
-		// 	bookDiv.setAttribute("data-user-id", book.user_id)
+		this.books.forEach((book) => {
+			const bookDiv = document.createElement('div')
+			bookDiv.className = "book-div"
+			bookDiv.id = `book-div-${book.id}`
+			bookDiv.setAttribute("data-id", book.id)
+			bookDiv.setAttribute("data-user-id", book.user_id)
+			this.newUserBooksContainer.innerHTML = this.books.map(book => book.renderLi()).join('')
 
-		// 	// Appends the User's name to the Book
-		// 	const nameElement = document.createElement('p')
-		// 	let book_user = this.users.find((user) => {
-		// 	    return user["attributes"].id === book.user_id
-		// 	})
-		// 	nameElement.innerHTML = `${book_user["attributes"].name} Book List`
-		// 	bookDiv.append(nameElement) // Append name to the div
+			// const nameElement = document.createElement('p')
+			// let book_user = this.users.find((user) => {
+			// 	return user["attributes"].id === book.user_id
+			// })
+			// nameElement.innerHTML = `${book_user["attributes"].name} Book List`
+			// bookDiv.append(nameElement)
 
-		// 	// Appends the Book Title to the Book
-		// 	let titleElement = document.createElement('p')
-		// 	titleElement.innerText = `Book: ${book.title}`
-		// 	bookDiv.append(titleElement)
-		// })
+			// let titleElement = document.createElement('p')
+			// titleElement.innerText = `Book: ${book.title}`
+			// bookDiv.append(titleElement)
+		})
         this.renderLogoutButton()
     }
 
     renderLogoutButton() {
-		const linebreak = document.createElement('br');
-		this.logoutButtonDiv.append(linebreak)
 		const logoutBtn = document.createElement('button')
 		logoutBtn.id = 'logout-button'
-		logoutBtn.innerText = "Logout"
 		logoutBtn.className = "btn btn-default"
+		logoutBtn.innerText = "Logout"
 		this.logoutButtonDiv.append(logoutBtn)
 		logoutBtn.addEventListener("click", (event) => {
 			window.location.reload(true)

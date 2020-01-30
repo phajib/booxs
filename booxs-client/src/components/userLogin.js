@@ -31,27 +31,27 @@ class userLogin {
 		formGroupDiv.setAttribute("class", "form-group")
 		this.signupForm_div.appendChild(formGroupDiv)
 
-		const signUpForm = document.createElement('form') // Create New Form Element
+		const signUpForm = document.createElement('form')
 		signUpForm.id = "signup-form"
-		signUpForm.setAttribute("action", "") // Setting Action Attribute on Form
-		signUpForm.setAttribute("method", "post") // Setting Method Attribute on Form
+		signUpForm.setAttribute("action", "")
+		signUpForm.setAttribute("method", "post")
 		formGroupDiv.appendChild(signUpForm)
 
-		const heading = document.createElement('h2') // Heading of Form
+		const heading = document.createElement('h2')
 		heading.innerHTML = "Signup Form"
 		signUpForm.appendChild(heading)
 
-		const line = document.createElement('hr') // Giving Horizontal Row After Heading
+		const line = document.createElement('hr')
 		signUpForm.appendChild(line)
 
 		const linebreak = document.createElement('br')
 		signUpForm.appendChild(linebreak)
 
-		const namelabel = document.createElement('label') // Create Label for Name Field
-		namelabel.innerHTML = "Name : " // Set Field Labels
+		const namelabel = document.createElement('label')
+		namelabel.innerHTML = "Name : "
 		signUpForm.appendChild(namelabel)
 
-		const nameElement = document.createElement('input') // Create Input Field for Name
+		const nameElement = document.createElement('input')
 		nameElement.setAttribute("type", "text")
 		nameElement.setAttribute("name", "name")
 		nameElement.setAttribute("required", "")
@@ -60,13 +60,13 @@ class userLogin {
 
 		signUpForm.appendChild(linebreak)
 
-		const emailLabel = document.createElement('label') // Create Label for Name Field
-		emailLabel.innerHTML = "Email: " // Set Field Labels
+		const emailLabel = document.createElement('label')
+		emailLabel.innerHTML = "Email: "
 		signUpForm.appendChild(emailLabel)
 
 		signUpForm.appendChild(linebreak)
 
-		const emailElement = document.createElement('input') // Create Input Field for Email
+		const emailElement = document.createElement('input')
 		emailElement.setAttribute("type", "text")
 		emailElement.setAttribute("name", "email")
 		emailElement.setAttribute("required", "")
@@ -75,11 +75,11 @@ class userLogin {
 
 		signUpForm.appendChild(linebreak)
 
-		const password_label = document.createElement('label') // Create Label for Password Field
+		const password_label = document.createElement('label')
 		password_label.innerHTML = "Password : "
 		signUpForm.appendChild(password_label)
 
-		const passwordElement = document.createElement('input') // Create Input Field for Password
+		const passwordElement = document.createElement('input')
 		passwordElement.setAttribute("type", "password")
 		passwordElement.setAttribute("name", "password")
 		passwordElement.setAttribute("required", "")
@@ -88,7 +88,7 @@ class userLogin {
 
 		signUpForm.appendChild(linebreak)
 
-		const submitElement = document.createElement('input'); // Append Submit Button
+		const submitElement = document.createElement('input');
 		submitElement.setAttribute("type", "submit");
 		submitElement.setAttribute("name", "submit");
 		submitElement.setAttribute("value", "Signup");
@@ -102,23 +102,23 @@ class userLogin {
 			for (const [key, value] of form_data.entries()) {
 				jsonObject[key] = value
 			}
-			this.adapter.submitSignup(jsonObject) // Send form data to LoginAdapter for fetching to API
+			this.adapter.signup(jsonObject)
 		})
 	}
 
 	renderLoginButton() {
-		const loginBtn = document.createElement('button') // Create New Form Element
+		const loginBtn = document.createElement('button')
 		loginBtn.id = "login-button"
 		loginBtn.setAttribute("data-id", "login-button")
 		loginBtn.innerText = "Login"
 		loginBtn.className = "btn btn-default"
 		this.login_signup_button_div.append(loginBtn)
 		this.renderSignUpButton(loginBtn)
-		
-		const signup_button = document.getElementById("signup-button")
+
+		const signupBtn = document.getElementById("signup-button")
 		loginBtn.addEventListener("click", () =>  {
 			loginBtn.parentNode.removeChild(loginBtn)
-			signup_button.parentNode.removeChild(signup_button)
+			signupBtn.parentNode.removeChild(signupBtn)
 			this.renderLoginForm()
 		})
 	}
@@ -134,15 +134,15 @@ class userLogin {
 		loginForm.setAttribute("method", "post")
 		formGroupDiv.appendChild(loginForm)
 
-		const heading = document.createElement('h2')
-		heading.innerHTML = "Login Form"
-		loginForm.appendChild(heading)
+		const h2 = document.createElement('h2')
+		h2.innerHTML = "Login Form"
+		loginForm.appendChild(h2)
 
-		const line = document.createElement('hr') // Giving Horizontal Row After Heading
-		loginForm.appendChild(line)
+		const hr = document.createElement('hr')
+		loginForm.appendChild(hr)
 
-		const linebreak = document.createElement('br')
-		loginForm.appendChild(linebreak)
+		const br = document.createElement('br')
+		loginForm.appendChild(br)
 
 		const emailLabel = document.createElement('label')
 		emailLabel.innerHTML = "Email: "
@@ -155,20 +155,20 @@ class userLogin {
 		emailElement.setAttribute("class", "form-control")
 		loginForm.appendChild(emailElement)
 
-		// loginForm.appendChild(linebreak)
+		loginForm.appendChild(br)
 
-		const passwordLabel = document.createElement('label') // Create Label for Password Field
+		const passwordLabel = document.createElement('label')
 		passwordLabel.innerHTML = "Password : "
 		loginForm.appendChild(passwordLabel)
 
-		const passwordElement = document.createElement('input') // Create Input Field for Password
+		const passwordElement = document.createElement('input')
 		passwordElement.setAttribute("type", "password")
 		passwordElement.setAttribute("name", "password")
 		passwordElement.setAttribute("required", "");
 		passwordElement.setAttribute("class", "form-control")
 		loginForm.appendChild(passwordElement)
 
-		// loginForm.appendChild(linebreak)
+		loginForm.appendChild(br)
 
 		const submitElement = document.createElement('input');
 		submitElement.setAttribute("type", "submit");
@@ -184,7 +184,7 @@ class userLogin {
 			for (const [key, value] of form_data.entries()) {
 				jsonObject[key] = value
 			}
-			this.adapter.submitLogin(jsonObject)
+			this.adapter.login(jsonObject)
 		})
 	}
 }
