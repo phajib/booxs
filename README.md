@@ -13,14 +13,14 @@ To create a IMDB for books with a simple and catchy name and with a minimalistic
 
 ### Features
 Current features:
-    - User can Login or Signup
-    - User can enter a New Book
-    - Books are displayed in more details through a modal.
+- User can Login or Signup
+- User can enter a New Book
+- Books are displayed in more details through a modal.
 
 Future features;
-    - Edit and Delete a User account.
-    - Edit books created by the user.
-    - Search for books.
+- Edit and Delete a User account.
+- Edit books created by the user.
+- Search for books.
 
 ---
 
