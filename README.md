@@ -17,7 +17,7 @@ Current features:
 - User can enter a New Book
 - Books are displayed in more details through a modal.
 
-Future features;
+Future features:
 - Edit and Delete a User account.
 - Edit books created by the user.
 - Search for books.
@@ -30,9 +30,9 @@ Future features;
 _The API needs to be operational in order for the CLIENT to take into effect. Refer to the **README.md** in the **booxs-api** folder to run the API._
 
 #### Frontend/CLIENT
-1.The API should be running on the Rails development server  (```http://localhost:3000```).
+1. The API should be running on the Rails development server  (```http://localhost:3000```).
 
-2. Locate *_index.html_ (```/booxs-client/index.html```) and open it with your browser.
+2. Locate *_index.html_* (```/booxs-client/index.html```) and open it with your browser.
 
 ---
 
