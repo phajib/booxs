@@ -98,11 +98,11 @@ class userLogin {
 		signUpForm.addEventListener("submit", (event) => {
 			event.preventDefault()
 			let form_data = new FormData(signUpForm)
-			let jsonObject = {}
+			let userData = {}
 			for (const [key, value] of form_data.entries()) {
-				jsonObject[key] = value
+				userData[key] = value
 			}
-			this.adapter.signup(jsonObject)
+			this.adapter.signup(userData)
 		})
 	}
 
@@ -180,11 +180,11 @@ class userLogin {
 		loginForm.addEventListener("submit", (event) => {
 			event.preventDefault()
 			let form_data = new FormData(loginForm)
-			let jsonObject = {}
+			let userData = {}
 			for (const [key, value] of form_data.entries()) {
-				jsonObject[key] = value
+				userData[key] = value
 			}
-			this.adapter.login(jsonObject)
+			this.adapter.login(userData)
 		})
 	}
 }

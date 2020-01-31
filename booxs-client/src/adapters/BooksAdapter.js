@@ -27,6 +27,7 @@ class BooksAdapter {
 		}
 		return fetch(this.BOOKS_URL, {
 			method: "POST",
+			// credentials: "include",
 			headers: {
 				'Content-Type': 'application/json'
 			},
