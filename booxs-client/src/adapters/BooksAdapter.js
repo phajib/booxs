@@ -1,4 +1,10 @@
+// Adapters talks to Backend/API. Purpose of particular adapter
+// It's job is to communicate to the API
+
 class BooksAdapter {
+	// object
+	// When we instantiate BookAdapter it's going to set the URLs and 
+	// then we will have the ability to call on the other methods
     constructor() {
 		this.BOOKS_URL = "http://localhost:3000/api/v1/books"
 		this.USERS_URL = "http://localhost:3000/api/v1/users/"
@@ -9,12 +15,18 @@ class BooksAdapter {
 		this.newBookFormDiv = document.getElementById('new-boox-form-div')
 	}
 
-    getBooks() {
+	// gets FETCH request to BOOKS_URL, then once receiving response from the request
+	// parse that json for that particular response.
+	// instatnce method
+	getBooks() {
         return fetch(this.BOOKS_URL).then(res => res.json())
 	}
-	
-	getUserBooks() {
-		return fetch(this.USERS_URL + this.id).then(res => res.json())
+
+	// gets FETCH request to USERS_URL, then once receiving response from the request
+	// parse that json for that particular response.
+	// instatnce method
+	getUserBooks(id) {
+		return fetch(this.USERS_URL + id).then(res => res.json())
 	}
 
 	createBook(createBookJSON) {
@@ -47,7 +59,7 @@ class BooksAdapter {
 		bookForm.id = "new-book-form"
 		bookForm.setAttribute("method", "post")
 		bookForm.setAttribute("action", "")
-		
+
 		const formGroup = document.createElement('div')
 		formGroup.setAttribute("class", "form-group")
 		formGroup.appendChild(bookForm)		

@@ -104,6 +104,7 @@ class userLogin {
 			}
 			this.adapter.signup(userData)
 		})
+		console.log('Sign up to create and account')
 	}
 
 	renderLoginButton() {

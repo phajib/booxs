@@ -15,6 +15,7 @@ class LoginAdapter {
 		})
 		.then(response => response.json())
 		.then(user => {
+			console.log(user)
 			let current_user = new User(user)
 			User.currentUser(current_user)
 
@@ -33,7 +34,7 @@ class LoginAdapter {
 		method: "POST",
 		// credentials: "include",
 		headers: {
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json' //Tells server expect to receive JSON in this body of request
 			// "Accept": "application/json"
 		},
 		body: JSON.stringify(userData)

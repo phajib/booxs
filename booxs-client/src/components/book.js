@@ -6,6 +6,7 @@ class Book {
         this.image = bookJSON.image
         this.description = bookJSON.description
         this.user_id = bookJSON.user_id
+        // this.book_user["attributes"] = bookJSON.book_user
     }
 
     renderLi() {

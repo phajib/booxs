@@ -1,6 +1,10 @@
 class Api::V1::UsersController < ApplicationController
     def index
-        users = User.all
+        if params[:book_id]
+            users = Book.find(params[:book_id]).users
+        else
+            users = User.all
+        end
         render json: UserSerializer.new(users)
     end
 

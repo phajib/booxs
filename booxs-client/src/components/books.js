@@ -1,5 +1,9 @@
+// Books contains the meat our program
+
 class Books {
     constructor(users) {
+		// properties for Books
+		// Once Books is called variables are set
         this.users = users
 		this.BOOKS_URL = "http://localhost:3000/api/v1/books"
 		this.USERS_URL = "http://localhost:3000/api/v1/users"
@@ -30,13 +34,17 @@ class Books {
 		newBookButton.addEventListener("click", this.adapter.renderNewBookForm.bind(this.adapter))
 	}
 
+	// Uses BooksAdapter = adapter
     fetchAndLoadUserBooks() {
-        this.adapter.getBooks()
+		this.adapter.getBooks()
+		// After retreiving our Books, we select our books
 		.then(books => {
 			books["data"].forEach(book => this.books.push(new Book(book["attributes"])))
 			// books.forEach(book => this.books.push(new Book(book)))
+			console.log(this.books)
 		})
 		.then(() => {
+			// this.renderBooks()
 			this.renderUserBooks()
 		})
     }
@@ -50,19 +58,20 @@ class Books {
 			bookDiv.id = `book-div-${book.id}`
 			bookDiv.setAttribute("data-id", book.id)
 			bookDiv.setAttribute("data-user-id", book.user_id)
-			this.newUserBooksContainer.innerHTML = this.books.map(book => book.renderLi()).join('')
+			
 
-			// const nameElement = document.createElement('p')
-			// let book_user = this.users.find((user) => {
-			// 	return user["attributes"].id === book.user_id
-			// })
-			// nameElement.innerHTML = `${book_user["attributes"].name} Book List`
-			// bookDiv.append(nameElement)
+			const nameElement = document.createElement('p')
+			let book_user = this.users.find((user) => {
+				return user["attributes"].id === book.user_id
+			})
+			nameElement.innerHTML = `${book_user["attributes"].name} Book List`
+			bookDiv.append(nameElement)
 
-			// let titleElement = document.createElement('p')
-			// titleElement.innerText = `Book: ${book.title}`
-			// bookDiv.append(titleElement)
+			let titleElement = document.createElement('p')
+			titleElement.innerText = `Book: ${book.title}`
+			bookDiv.append(titleElement)
 		})
+		this.newUserBooksContainer.innerHTML = this.books.map(book => book.renderLi()).join('')
         this.renderLogoutButton()
     }
 
