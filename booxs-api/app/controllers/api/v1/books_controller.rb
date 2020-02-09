@@ -1,31 +1,32 @@
 class Api::V1::BooksController < ApplicationController
     def index
-        books = Book.all
-        # render json: books
+        # byebug
+        # books = current_user.Book.all.order("created_at DESC")
+        books = Book.all.order("created_at DESC")
         options = { include: [:user] }
         render json: BookSerializer.new(books, options), status: 200
-        # render json: BookSerializer.new(books), status: 200
     end
 
     def new
-        book = Book.new
+        @book = Book.new
     end
     
-
     def show
         book = Book.find(params[:id])
         render json: BookSerializer.new(book)
-        # render json: book
     end
 
     def create
         book = Book.new(book_params)
-        if book.save
-            books = Book.all
+        # if book.save
+        #     books = Book.all
+        #     options = { include: [:user] }
+        #     render json: BookSerializer.new(book, options), status: 200
+        # end
+        if book
+            books = Book.all.order("created_at DESC")
             options = { include: [:user] }
-            render json: BookSerializer.new(book, options), status: 200
-            # render json: BookSerializer.new(book), status: 200
-            # render json: book
+            render json: BookSerializer.new(books, options), status: 200
         end
     end
 
@@ -34,8 +35,6 @@ class Api::V1::BooksController < ApplicationController
         book.update(book_params)
         options = { include: [:user] }
         render json: BookSerializer.new(book, options), status: 200
-        # render json: BookSerializer.new(book), status: 200
-        # render json: book
     end
 
     def destroy

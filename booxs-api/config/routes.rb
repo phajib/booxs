@@ -3,20 +3,23 @@ Rails.application.routes.draw do
 
   root to: 'session#new'
 
+  # namespace :api do
+  #   namespace :v1 do
+  #     resources :users do
+  #       resources :books
+  #     end
+  #     resources :books
+  #   end
+  # end
+
   namespace :api do
     namespace :v1 do
-      resources :users do
-      # resources :books do
-        # resources :users
-        # resources :users
-        resources :books
-      end
-      # resources :users
+      resources :users
       resources :books
     end
   end
 
   get '/login' => 'sessions#new'
+  post '/logout' => 'sessions#destroy'
   post '/login' => 'sessions#create'
-  get '/logout' => 'sessions#destroy'
 end

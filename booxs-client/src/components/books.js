@@ -7,8 +7,10 @@ class Books {
         this.users = users
 		this.BOOKS_URL = "http://localhost:3000/api/v1/books"
 		this.USERS_URL = "http://localhost:3000/api/v1/users"
+		this.LOGOUT_URL = "http://localhost:3000/logout"
         this.books = []
-        this.adapter = new BooksAdapter()
+		this.adapter = new BooksAdapter()
+		this.adapterL = new LoginAdapter()
 		this.initBindingsAndEvenListeners()
 		this.createNewBookButton()
 		this.fetchAndLoadUserBooks()
@@ -37,6 +39,7 @@ class Books {
 	// Uses BooksAdapter = adapter
     fetchAndLoadUserBooks() {
 		this.adapter.getBooks()
+		// this.adapter.getUserBooks()
 		// After retreiving our Books, we select our books
 		.then(books => {
 			books["data"].forEach(book => this.books.push(new Book(book["attributes"])))
@@ -81,7 +84,9 @@ class Books {
 		logoutBtn.className = "btn btn-default"
 		logoutBtn.innerText = "Logout"
 		this.logoutButtonDiv.append(logoutBtn)
+
 		logoutBtn.addEventListener("click", (event) => {
+			this.adapterL.logout.bind(this.adapterL)
 			window.location.reload(true)
 		})
 	}

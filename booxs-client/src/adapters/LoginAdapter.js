@@ -1,6 +1,7 @@
 class LoginAdapter {
 	constructor() {
 		this.LOGIN_URL = "http://localhost:3000/login"
+		this.LOGOUT_URL = "http://localhost:3000/logout"
 		this.SIGNUP_URL = "http://localhost:3000/api/v1/users/"
 	}
 
@@ -52,5 +53,16 @@ class LoginAdapter {
 			alert("There was an error signing up!");
 			console.log(error.message)
 		 })
+	}
+
+	logout() {
+		fetch(this.LOGOUT_URL, {
+			method: "POST",
+  			headers: {
+    			"Content-Type": "application/json",
+    		}
+		})
+  		.then(response => response.json())
+		.then(console.log)
 	}
 }
