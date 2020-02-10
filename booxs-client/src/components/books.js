@@ -26,6 +26,7 @@ class Books {
 		this.newBooxFormDiv = document.getElementById('new-boox-form-div')
         this.userTitleContainer = document.getElementById('user-title-container')
 		this.logoutButtonDiv = document.getElementById('logout-div')
+		this.cancelBtnDiv = document.getElementById('cancel-div')
     }
 
 	createNewandUserBookButton() {
@@ -38,7 +39,7 @@ class Books {
 		newBookButton.appendChild(linebreak)
 		this.newBooxFormDiv.append(newBookButton)
 		newBookButton.addEventListener("click", this.adapter.renderNewBookForm.bind(this.adapter))
-
+	
 		const userBookBtn = document.createElement('button')
 		userBookBtn.id = "user-books-button"
 		userBookBtn.className = "btn btn-default"
@@ -46,6 +47,14 @@ class Books {
 		this.newBooxFormDiv.append(userBookBtn)
 		// userBookBtn.addEventListener("click", this.fetchAndLoadUsersBooks.bind(this))
 		userBookBtn.addEventListener("click", this.renderCurrentUserBooks.bind(this))
+
+		const allBooksBtn = document.createElement('button')
+		allBooksBtn.id = "all-books-button"
+		allBooksBtn.className = "btn btn-default"
+		allBooksBtn.innerText = "View All Books"
+		this.newBooxFormDiv.append(allBooksBtn)
+		// userBookBtn.addEventListener("click", this.fetchAndLoadUsersBooks.bind(this))
+		allBooksBtn.addEventListener("click", this.fetchAndLoadBooks.bind(this))
 	}
 	
 	// Uses BooksAdapter = adapter
@@ -56,7 +65,7 @@ class Books {
 			// console.log(books)
 			books.data.forEach(book => this.books.push(new Book(book.attributes)))
 			// console.log(this.books)
-			debugger
+
 		})
 		.then(() => {
 			this.renderBooks()
@@ -150,7 +159,6 @@ class Books {
 	renderCurrentUserBooks(){
 		this.adapter.getUserBooks(User.currentUser.id)
 		.then(user => this.books = user.books)
-        
 		.then(() => this.renderUserBooks() )
     }
 
@@ -216,5 +224,18 @@ class Books {
 			this.adapterL.logout.bind(this.adapterL)
 			window.location.reload(true)
 		})
+	}
+
+	renderCancelButton() {
+		const cancelButtonn = document.createElement('input')
+			cancelButton.setAttribute("type", "button");
+			cancelButton.setAttribute("value", "Cancel")
+			cancelButton.id = "cancel-button"
+			cancelButton.className = "btn btn-default"
+			bookForm.appendChild(cancelButton)
+			this.cancelBtnDiv.addEventListener("click", (event) => {
+				bookForm.parentNode.removeChild(bookForm)
+				new Users()
+			})
 	}
 }  

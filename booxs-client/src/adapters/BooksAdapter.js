@@ -173,7 +173,8 @@ class BooksAdapter {
 			console.log(users)
 			// users.data.forEach(user => this.usersBooks.push(new User(user.relationships.data)))
 			// this.users.find((user) => user["attributes"].id === book.user_id).relationships.books.data //this gives current Users books
-			users.data.forEach(user => this.usersBooks.push(new User(user.relationships.data)))
+			// users.data.forEach(user => this.usersBooks.push(new User(user.relationships.data)))
+			users.data.sort((a, b) => a.title - b.title).forEach(user => this.usersBooks.push(new User(user.relationships.data)))
 			console.log(this.users)
 		})
 		.then(() => {

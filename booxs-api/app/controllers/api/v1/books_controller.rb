@@ -18,16 +18,16 @@ class Api::V1::BooksController < ApplicationController
 
     def create
         book = Book.new(book_params)
-        # if book.save
-        #     books = Book.all
-        #     options = { include: [:user] }
-        #     render json: BookSerializer.new(book, options), status: 200
-        # end
-        if book
+        if book.save
             books = Book.all.order("created_at DESC")
             options = { include: [:user] }
-            render json: BookSerializer.new(books, options), status: 200
+            render json: BookSerializer.new(book, options), status: 200
         end
+        # if book
+        #     books = Book.all.order("created_at DESC")
+        #     options = { include: [:user] }
+        #     render json: BookSerializer.new(books, options), status: 200
+        # end
     end
 
     def update

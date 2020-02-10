@@ -6,8 +6,4 @@ class UsersAdapter {
 	getUsers() {
 		return fetch(this.USERS_URL).then(res => res.json())
 	}
-
-	// getUsersBooks(id) {
-	// 	return fetch(this.USERS_URL + id).then(res => res.json())
-	// }
 }
