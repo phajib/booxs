@@ -16,7 +16,7 @@ class LoginAdapter {
 		})
 		.then(response => response.json())
 		.then(user => {
-			console.log(user)
+			// console.log(user)
 			let current_user = new User(user)
 			User.currentUser(current_user)
 

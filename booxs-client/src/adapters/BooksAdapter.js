@@ -30,7 +30,7 @@ class BooksAdapter {
 	getUserBooks() {
 		return fetch(this.USERS_URL + User.currentUser.id)
 		.then(res => res.json())
-		.then(console.log())
+		
 	}
 
 	renderNewBookForm() {

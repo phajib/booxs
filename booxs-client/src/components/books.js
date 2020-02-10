@@ -44,8 +44,8 @@ class Books {
 		userBookBtn.className = "btn btn-default"
 		userBookBtn.innerText = "View your Books"
 		this.newBooxFormDiv.append(userBookBtn)
-		userBookBtn.addEventListener("click", this.fetchAndLoadUsersBooks.bind(this))
-		// userBookBtn.addEventListener("click", this.fetchAndLoadBooks.bind(this.adapter))
+		// userBookBtn.addEventListener("click", this.fetchAndLoadUsersBooks.bind(this))
+		userBookBtn.addEventListener("click", this.renderCurrentUserBooks.bind(this))
 	}
 	
 	// Uses BooksAdapter = adapter
@@ -53,9 +53,10 @@ class Books {
 		this.adapter.getBooks()
 		// After retreiving our Books, we select our books
 		.then(books => {
-			console.log(books)
+			// console.log(books)
 			books.data.forEach(book => this.books.push(new Book(book.attributes)))
-			console.log(this.books)
+			// console.log(this.books)
+			debugger
 		})
 		.then(() => {
 			this.renderBooks()
@@ -123,8 +124,8 @@ class Books {
     }
 
 	fetchAndLoadUsersBooks() {
-		// this.adapter.getBooks()
 		this.adapter.getUserBooks()
+		// debugger
 		// After retrieving User's Books, we select our books
 		// .then(books => {
 			// console.log(books)
@@ -136,7 +137,7 @@ class Books {
 		// })
 		.then(users => {
 			console.log(users)
-			debugger
+			// debugger
 			this.usersBooks.push(users.data.relationships.books.data)
 
 			// this.users.find((user) => user["attributes"].id === book.user_id).relationships.books.data
@@ -146,12 +147,20 @@ class Books {
 		})
 	}
 	
-	renderUserBooks() {
+	renderCurrentUserBooks(){
+		this.adapter.getUserBooks(User.currentUser.id)
+		.then(user => this.books = user.books)
+        
+		.then(() => this.renderUserBooks() )
+    }
+
+
+	renderUserBooks(booksArray = this.books) {
 		this.newUserBooksContainer.innerHTML = ""
 		this.logoutButtonDiv.innerHTML = ""
 		let userBook_counter = 1
 
-		this.books.forEach((book) => {
+		booksArray.forEach((book) => {
 
 			// this.usersBooks.push(this.users.find((user) => user["attributes"].id === book.user_id).relationships.books.data)
 
@@ -193,7 +202,7 @@ class Books {
 
 			this.newUserBooksContainer.append(bookDiv)
 		})
-        books.renderLogoutButton()
+        this.renderLogoutButton()
 	}
 
     renderLogoutButton() {
