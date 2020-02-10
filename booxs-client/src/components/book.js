@@ -6,14 +6,13 @@ class Book {
         this.image = bookJSON.image
         this.description = bookJSON.description
         this.user_id = bookJSON.user_id
-        // this.book_user["attributes"] = bookJSON.book_user
     }
 
     renderLi() {
         return `<div class="col-md-6 col-0-gutter">
                     <div class="ot-book-item">
                          <figure class="effect-bubba">
-                            <img src=${this.image} alt="${this.title}" class="img-fluid" />
+                            <img src=${this.image} width="200" height="325" alt="${this.title}" class="img-fluid" />
                             <figcaption>
                                 <h2>${this.title}</h2>
                                 <p>${this.author}</p>           

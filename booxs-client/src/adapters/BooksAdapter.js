@@ -8,6 +8,8 @@ class BooksAdapter {
     constructor() {
 		this.BOOKS_URL = "http://localhost:3000/api/v1/books"
 		this.USERS_URL = "http://localhost:3000/api/v1/users/"
+		this.usersBooks = []
+		this.books = []
         this.initBindingAndEventListeners()
     }
 
@@ -17,40 +19,18 @@ class BooksAdapter {
 
 	// gets FETCH request to BOOKS_URL, then once receiving response from the request
 	// parse that json for that particular response.
-	// instatnce method
+	// instance method
 	getBooks() {
         return fetch(this.BOOKS_URL).then(res => res.json())
 	}
 
 	// gets FETCH request to USERS_URL, then once receiving response from the request
 	// parse that json for that particular response.
-	// instatnce method
-	getUserBooks(id) {
-		return fetch(this.USERS_URL + id).then(res => res.json())
-	}
-
-	createBook(createBookJSON) {
-		const book = {
-			title: createBookJSON.title,
-			author: createBookJSON.author,
-			description: createBookJSON.description,
-			image: createBookJSON.image,
-			user_id: createBookJSON.user_id
-		}
-		return fetch(this.BOOKS_URL, {
-			method: "POST",
-			// credentials: "include",
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(book)
-		})
-		.then(response => {
-			return response.json()
-		})
-		.then(() => {
-			new Users()
-		})
+	// instance method
+	getUserBooks() {
+		return fetch(this.USERS_URL + User.currentUser.id)
+		.then(res => res.json())
+		.then(console.log())
 	}
 
 	renderNewBookForm() {
@@ -161,4 +141,90 @@ class BooksAdapter {
 			this.createBook(jsonObject)
 		})
 	}
+
+	createBook(createBookJSON) {
+		const book = {
+			title: createBookJSON.title,
+			author: createBookJSON.author,
+			description: createBookJSON.description,
+			image: createBookJSON.image,
+			user_id: createBookJSON.user_id
+		}
+		return fetch(this.BOOKS_URL, {
+			method: "POST",
+			// credentials: "include",
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(book)
+		})
+		.then(response => {
+			return response.json()
+		})
+		.then(() => {
+			new Users()
+		})
+	}
+
+	fetchAndLoadUsersBooks() {
+		this.getUserBooks()
+		// After retreiving User's Books, we select our books
+		.then(users => {
+			console.log(users)
+			// users.data.forEach(user => this.usersBooks.push(new User(user.relationships.data)))
+			// this.users.find((user) => user["attributes"].id === book.user_id).relationships.books.data //this gives current Users books
+			users.data.forEach(user => this.usersBooks.push(new User(user.relationships.data)))
+			console.log(this.users)
+		})
+		.then(() => {
+			this.renderUserBooks()
+		})
+	}
+	
+	// renderUserBooks() {
+	// 	this.newUserBooksContainer.innerHTML = ""
+	// 	this.logoutButtonDiv.innerHTML = ""
+	// 	let userBook_counter = 1
+
+	// 	this.books.forEach((book) => {
+	// 		const bookDiv = document.createElement('div')
+	// 		bookDiv.className = "book-div"
+	// 		bookDiv.id = `book-div-${book.id}`
+	// 		bookDiv.setAttribute("data-id", book.id)
+	// 		bookDiv.setAttribute("data-user-id", book.user_id)
+
+	// 		const userBooknumber = document.createElement('h3')
+	// 		userBooknumber.innerHTML = `Book: #${book.id}`
+	// 		bookDiv.append(userBooknumber)
+	// 		userBook_counter++
+
+	// 		const nameElement = document.createElement('p')
+	// 		let book_user = this.users.find((user) => {
+	// 			return user["attributes"].id === book.user_id
+	// 		})
+	// 		nameElement.innerHTML = `Created By: ${book_user["attributes"].name}`
+	// 		bookDiv.append(nameElement)
+
+	// 		let titleElement = document.createElement('p')
+	// 		titleElement.innerText = `Book: ${book.title}`
+	// 		bookDiv.append(titleElement)
+
+	// 		let authorElement = document.createElement('p')
+	// 		authorElement.innerText = `Author: ${book.author}`
+	// 		bookDiv.append(authorElement)
+
+	// 		let imageElement = document.createElement('img')
+	// 		imageElement.setAttribute('src',`${book.image}`)
+	// 		imageElement.setAttribute('width', '200')
+	// 		imageElement.setAttribute('height', '325')
+	// 		bookDiv.append(imageElement)
+
+	// 		let descElement = document.createElement('p')
+	// 		descElement.innerText = `Description: ${book.description}`
+	// 		bookDiv.append(descElement)
+
+	// 		this.newUserBooksContainer.append(bookDiv)
+	// 	})
+    //     books.renderLogoutButton()
+	// }
 }

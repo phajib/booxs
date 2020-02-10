@@ -23,7 +23,7 @@ class Users {
 	renderUserBooxName() {
 		this.userBooxContainer.innerHTML = ""
 		this.userBoox = document.createElement('h2')
-		this.userBoox.innerHTML = `${User.currentUser.name}'s Boox!`
+		this.userBoox.innerHTML = `Welcome to Booxs ${User.currentUser.name}!`
 		this.userBooxContainer.append(this.userBoox)
 		new Books(this.users)
 	}
